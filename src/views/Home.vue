@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-      <img alt="Vue logo" src="../assets/logo.png">
-      <h1>Welcome to Task Manager</h1>
-      <Button type="primary" @click="handleClickButtonAdd" long>New Task</Button>
+    <img alt="Vue logo" src="../assets/logo.png">
+    <h1>Welcome to Task Manager</h1>
+    <Button type="primary" @click="handleClickButtonAdd" long>New Task</Button>
   </div>
 </template>
 
