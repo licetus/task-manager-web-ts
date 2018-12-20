@@ -1,24 +1,19 @@
 <template>
-  <div class="welcom">
+  <div class="welcome">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Button type="primary" @click="handleClickButton">{{ buttonText }}</Button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from '@/components/HelloWorld.vue'
-import config from '@/config/config.js'
-import router from '@/router';
+import config from '@/config/config'
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
+@Component
 export default class Welcome extends Vue {
   private timeout!: number
   private currentTime!: number
+  private intervalCode!: number
 
   constructor() {
     super()
@@ -26,30 +21,44 @@ export default class Welcome extends Vue {
     this.currentTime = this.timeout
   }
 
-  private get time() {
+  // computed
+  private get time(): number {
     return Math.ceil(this.currentTime / 1000)
   }
 
+  private get buttonText(): string {
+    return `( ${this.time} ) jump`
+  }
+
+  // methods
+  public handleClickButton(): void {
+    this.goHome()
+    clearInterval(this.intervalCode)
+  }
+
   private timeCount(): void {
-    setInterval(() => {
-      this.currentTime -= 1
-    }, 1000)
+    this.currentTime -= 1000
   }
 
   private goHome(): void {
     this.$router.push('/home')
   }
 
+  // life circle
   private initPage(): void {
-    if (this.time > 0) {
-      this.timeCount()
-    } else {
-      this.goHome()
-    }
+    this.intervalCode = setInterval(() => {
+      console.log('here', this.currentTime)
+      if (this.currentTime > 0) {
+        this.timeCount()
+      } else {
+        this.goHome()
+        clearInterval(this.intervalCode)
+      }
+    }, 1000)
   }
 
-  private mouted(): void {
-    this.timeCount()
+  private mounted(): void {
+    this.initPage()
   }
 }
 </script>
