@@ -4,11 +4,11 @@ import { createAuthInstance, createUploadInstance } from './base'
 import { RequestQuery } from '../model/interfaces'
 
 class Api {
-  public add: (data: object) => AxiosPromise
-  public delete: (id: number) => AxiosPromise
-  public update: (data: object, id: number) => AxiosPromise
-  public get: (id: number) => AxiosPromise
-  public getList: (query?: RequestQuery) => AxiosPromise
+  public add: (data: object) => any
+  public delete: (id: number) => any
+  public update: (data: object, id: number) => any
+  public get: (id: number) => any
+  public getList: (query?: RequestQuery) => any
 
   constructor(requestName: string) {
     this.add = async (data: object) => {
@@ -25,7 +25,7 @@ class Api {
     }
     this.getList = async (query?: RequestQuery) => {
       const str = query ? `?${qs.stringify(query)}` : ''
-      return createAuthInstance.get(`${requestName}str`).then((res) => res.data)
+      return createAuthInstance.get(`${requestName}${str}`).then((res) => res.data)
     }
   }
 }

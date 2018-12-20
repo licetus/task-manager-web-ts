@@ -20,3 +20,8 @@ export interface RequestQuery {
   filters: number,
   orderBy: number,
 }
+
+export interface ResponseList {
+  total: number,
+  items: any[],
+}
