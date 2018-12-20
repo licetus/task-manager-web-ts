@@ -7,8 +7,6 @@
 <script>
 export default {
   name: 'app',
-  components: {
-  },
 }
 </script>
 
@@ -18,5 +16,9 @@ export default {
   background-color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
 }
 </style>

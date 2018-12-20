@@ -31,7 +31,7 @@ export default class Welcome extends Vue {
   }
 
   // methods
-  public handleClickButton(): void {
+  private handleClickButton(): void {
     this.goHome()
     clearInterval(this.intervalCode)
   }
