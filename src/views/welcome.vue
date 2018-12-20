@@ -47,7 +47,6 @@ export default class Welcome extends Vue {
   // life circle
   private initPage(): void {
     this.intervalCode = setInterval(() => {
-      console.log('here', this.currentTime)
       if (this.currentTime > 0) {
         this.timeCount()
       } else {
