@@ -5,18 +5,23 @@
     <Button type="primary" @click="handleClickButtonAdd" long>New Task</Button>
     <div class="content">
       <Spin v-if="isListing"></Spin>
+      <template v-for="(item, key) of taskList">
+        <CardList :task="item" :key="key"></CardList>
+      </template>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import CardList from '../components/card-list.vue'
 import api from '../facades/api'
 import { Task } from '../model/interfaces'
 import { errorHandler } from '../utils'
 
 @Component({
   components: {
+    CardList,
   },
 })
 export default class Home extends Vue {
@@ -48,7 +53,7 @@ export default class Home extends Vue {
     try {
       const res = await api.task.getList()
       if (res.items.length > 0) {
-        this.taskList = res
+        this.taskList = res.items
       }
       this.isListing = false
     } catch (error) {
