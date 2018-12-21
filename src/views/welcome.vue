@@ -44,7 +44,6 @@ export default class Welcome extends Vue {
     this.$router.push('/home')
   }
 
-  // life circle
   private initPage(): void {
     this.intervalCode = setInterval(() => {
       if (this.currentTime > 0) {
@@ -56,6 +55,7 @@ export default class Welcome extends Vue {
     }, 1000)
   }
 
+  // life circle
   private mounted(): void {
     this.initPage()
   }
